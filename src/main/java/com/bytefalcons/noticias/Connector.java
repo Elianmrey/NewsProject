@@ -10,7 +10,7 @@ import java.net.URL;
 public class Connector {
 
     @SneakyThrows
-    public StringBuffer ConnectAndReceive(String route) {
+    public StringBuilder ConnectAndReceive(String route) {
 
 
         URL myUrl = new URL(route);
@@ -18,13 +18,12 @@ public class Connector {
         connection.setRequestMethod("GET");
         int response = connection.getResponseCode();
 
-            StringBuffer responseIn = new StringBuffer();
+        StringBuilder responseIn = new StringBuilder();
 
         if (response == HttpURLConnection.HTTP_OK) {
             BufferedReader receive = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
             String read;
-
 
             while ((read = receive.readLine()) != null) {
                 responseIn.append(read);

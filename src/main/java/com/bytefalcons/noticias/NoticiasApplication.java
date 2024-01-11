@@ -1,5 +1,7 @@
 package com.bytefalcons.noticias;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +12,10 @@ public class NoticiasApplication {
         SpringApplication.run(NoticiasApplication.class, args);
 
 
-        System.out.println(new Connector().ConnectAndReceive("https://servicodados.ibge.gov.br/api/v3/noticias/?tipo=noticia"));
+      JSONObject jsonIn = new JSONObject(new Connector().ConnectAndReceive("https://servicodados.ibge.gov.br/api/v3/noticias/?de=01-11-2024").toString());
+      JSONArray news = jsonIn.getJSONArray("items");
+
+        System.out.println(news);
     }
 
 }
